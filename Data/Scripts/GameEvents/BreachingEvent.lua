@@ -28,7 +28,7 @@ function BreachingEvent.getSpawnLocationModifier()
 end
 
 function BreachingEvent.allowEvent(nPopulation, nElapsedTime)
-    return nPopulation > 6 or GameRules.elapsedTime > 60 * 10
+    return nPopulation > 35 and GameRules.elapsedTime > 60 * 15
 end
 
 function BreachingEvent.getWeight(nPopulation, nElapsedTime, bForecast)

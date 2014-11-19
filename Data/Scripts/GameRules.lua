@@ -96,7 +96,7 @@ local GameRules = {
     MIN_PLAYER_TIME_SCALE = 1/4,
 
     -- matter economy
-    STARTING_MATTER = 2000,
+    STARTING_MATTER = 5000,
     MAT_BUILD_FLOOR = 6,
     MAT_BUILD_DOOR = 12,
     MAT_BUILD_AIRLOCK_DOOR = 15,
@@ -121,7 +121,7 @@ local GameRules = {
     
     -- life support system
     -- (# of recyclers needed to support 1 citizen)
-    RECYCLERS_PER_CITIZEN = 3,
+    RECYCLERS_PER_CITIZEN = 5,
 	
 	-- hint system state
 	bHasHadEnclosedRooms = false,

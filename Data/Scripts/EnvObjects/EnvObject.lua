@@ -28,8 +28,8 @@ local World = require('World')
 local EnvObject = Class.create(nil, MOAIProp.new)
 
 -- Decay per hour is set per-object in EnvObjectData.lua
-EnvObject.MIN_PCT_HEALED_PER_MAINTAIN = 20
-EnvObject.MAX_PCT_HEALED_PER_MAINTAIN = 60
+EnvObject.MIN_PCT_HEALED_PER_MAINTAIN = 25
+EnvObject.MAX_PCT_HEALED_PER_MAINTAIN = 50
 -- amount damaged on failure
 EnvObject.MAINTAIN_FAILURE_DAMAGE = 0
 EnvObject.PROBABILITY_FIRE_ON_DESTROY = 0
