@@ -33,7 +33,7 @@ function CompoundEvent.getSpawnLocationModifier()
 end
 
 function CompoundEvent.allowEvent(nPopulation, nElapsedTime)
-    return nPopulation > 15 or GameRules.elapsedTime > 60*20
+    return nPopulation > 100 or GameRules.elapsedTime > 60*60*2
 end
 
 function CompoundEvent.getWeight(nPopulation, nElapsedTime)

@@ -332,6 +332,8 @@ end
 
 function Turret:isHostileTo(rChar)
     if rChar:isDead() then return false end
+    -- MDBALANCEMOD: Added this If to stop turret from targeting incapacitated targets.
+    if rChar:isIncapacitated() then return false end
     if not self:isFunctioning() then return false end
     if self:_fireOnEveryone() then return true end
     if Base.isFriendly(self,rChar) then return false end

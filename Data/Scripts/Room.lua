@@ -1746,6 +1746,19 @@ function Room:tickPower()
 	self.nPowerDraw = nTotalPowerDraw
 end
 
+function Room:tickCreateBodyBags()
+	-- Seems like the game doesn't create body bags efficiently
+	-- In long games, bodies can add up and make rendering the game very slow
+	local tChars, nChars = self:getCharactersInRoom(true)
+	if nChars > 0 then
+		for rChar,_ in pairs(tChars) do
+			if rChar:isDead() then
+				rChar:createBodyBag()
+			end
+		end
+	end
+end
+
 function Room:clearPowerVisLines()
     if self.tPowerVisLines then
         local rLayer = Renderer.getRenderLayer(Room.POWER_DISPLAY_LAYER)
@@ -1790,6 +1803,7 @@ function Room:tickRoomSlow()
     self:tickDoors()
     self:tickOxygen()
 	self:tickPower()
+	--self:tickCreateBodyBags()
 end
 
 function Room:canProvidePower()

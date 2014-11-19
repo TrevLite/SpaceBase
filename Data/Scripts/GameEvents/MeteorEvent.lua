@@ -18,7 +18,7 @@ local MiscUtil = require('MiscUtil')
 MeteorEvent.sEventType = "meteorEvents"
 MeteorEvent.sAlertLC = 'ALERTS026TEXT'
 MeteorEvent.sFailureLC = 'ALERTS027TEXT'
-MeteorEvent.METEOR_STRIKE_RADIUS=256*3
+MeteorEvent.METEOR_STRIKE_RADIUS=256*2
 
 function MeteorEvent.getSpawnLocationModifier()
     return Event._getExpMod('asteroids')
@@ -29,7 +29,7 @@ function MeteorEvent.getWeight()
 end
 
 function MeteorEvent.allowEvent(nPopulation, nElapsedTime)
-    return nPopulation > 4 or GameRules.elapsedTime > 60*10
+    return nPopulation > 10 and GameRules.elapsedTime > 60*10
 end
 
 function MeteorEvent.onQueue(rController, tUpcomingEventPersistentState, nPopulation, nElapsedTime)

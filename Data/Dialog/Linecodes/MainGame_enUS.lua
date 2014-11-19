@@ -1,5 +1,5 @@
 return {
-    CMAP001TEXT = { sLine = "\n ! \" # $ & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \\ ] ^ _ a b c d e f g h i j k l m n o p q r s t u v w x y z | © Ö ™", },
+    CMAP001TEXT = { sLine = "\n ! \" # $ & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \\ ] ^ _ a b c d e f g h i j k l m n o p q r s t u v w x y z | © ÁE™", },
     ALERTS001TEXT = { sLine = "/name/ is on fire!", },
     ALERTS002TEXT = { sLine = "New citizen /name/ has joined the base.", },
     ALERTS003TEXT = { sLine = "The base is on fire!", },
@@ -348,7 +348,7 @@ return {
     HINTSX013TEXT = { sLine = "Use the mouse wheel or the + and - keys to ZOOM.", },
     HINTSX014TEXT = { sLine = "Right click-drag the screen to PAN around your base.", },
     HINTSX015TEXT = { sLine = "Citizens can't go in and out of the base without a functioning Airlock. Zone a space-facing room as an Airlock, then place two Airlock Doors and a Suit Locker in it.", },
-    HINTSX016TEXT = { sLine = "Your citizens start with 8 minutes of spacesuit oxygen.  To start building your new base, create a rectangular room with the Room tool in the Construct menu.", },
+    HINTSX016TEXT = { sLine = "Your citizens start with 10 minutes of spacesuit oxygen.  To start building your new base, create a rectangular room with the Room tool in the Construct menu.", },
     HINTSX017TEXT = { sLine = "Your base has no oxygen supply. Zone rooms as Life Support Zones and place Oxygen Recyclers.", },
     HINTSX018TEXT = { sLine = "DEBUG: You are in edit mode, proceed with care.", },
     HINTSX019TEXT = { sLine = "One of your Pubs is at capacity. Expand it, or build a new one.", },

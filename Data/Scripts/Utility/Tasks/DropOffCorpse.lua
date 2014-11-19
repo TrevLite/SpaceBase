@@ -31,6 +31,7 @@ function DropOffCorpse:onUpdate(dt)
                 self:interrupt('item to incinerate is gone')
                 return
             elseif tItemData.sTemplate == 'Corpse' then
+				Print(TT_Warning, 'Corpse Begon')
                 self.rChar:alterMorale(Character.MORALE_MINE_ASTEROID, 'DroppedOffCorpse')
                 local tLogData = { sDeceased = tItemData.sOccupantName }
                 -- different logs for friendly, monster, raider

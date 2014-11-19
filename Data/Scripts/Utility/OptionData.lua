@@ -311,6 +311,8 @@ local tAdvertisedActivities=
         Tags={WorkShift=true,Job=Character.DOCTOR,DestOwned=true,},
         Prerequisites={ HeldItem='Corpse' },
         UIText='UITASK071TEXT',
+        -- MDBALANCEMOD: Gave the task of removing corpses a priority, who wants all those corpses lying around forever reducing moral?!
+        ScoreMods={Priority=tPriorities.SURVIVAL_NORMAL},
     },
     
     -- Emergency/security

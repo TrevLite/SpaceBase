@@ -38,7 +38,8 @@ CharacterConstants.PERSONALITY_TRAITS=
     -- 1 = gregarious, 0 = shy
     nGregariousness=2,
     -- 1 = chatty, 0 = quiet
-	nChattiness=3,
+    -- MDBALANCEMOD: Origonal Value was - nChattiness=3,
+	nChattiness=2,
     -- 1 = neat, 0 = slob
     nNeatness=4,
     -- uses emoticons
@@ -227,7 +228,8 @@ CharacterConstants.AccessoryDefs = {
 
 
 -- time before someone will consider chatting with last person they chatted with
-CharacterConstants.CHAT_COOLDOWN = 10
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.CHAT_COOLDOWN = 10
+CharacterConstants.CHAT_COOLDOWN = 20
 -- bonus social reward for chatting in a pub - reward will be multiplied by this
 CharacterConstants.CHAT_PUB_BONUS = 100
 -- affinity values
@@ -251,11 +253,13 @@ CharacterConstants.ENEMY_AFFINITY = -5
 -- if affinity for a duty above/below this, we like/dislike it,
 -- otherwise we're just meh
 CharacterConstants.DUTY_AFFINITY_LIKE = 2.5
-CharacterConstants.DUTY_AFFINITY_DISLIKE = -2.5
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.DUTY_AFFINITY_DISLIKE = -2.5
+CharacterConstants.DUTY_AFFINITY_DISLIKE = -2.1
 -- largest duty-affinity XP bonus/penalty will get
 CharacterConstants.DUTY_AFFINITY_XP_MAX_RATE = 0.5
 -- largest duty-affinity morale bonus/penalty will get
-CharacterConstants.DUTY_AFFINITY_MORALE_MAX = 0.4
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.DUTY_AFFINITY_MORALE_MAX = 0.4
+CharacterConstants.DUTY_AFFINITY_MORALE_MAX = 0.5
 
 -- stuff affinity
 CharacterConstants.STUFF_AFFINITY_PICKUP_THRESHOLD = 2
@@ -321,12 +325,15 @@ CharacterConstants.MORALE_SPEED_THRESHOLD = 50
 CharacterConstants.MORALE_LOW_SPEED_MODIFIER = -0.3
 CharacterConstants.MORALE_HIGH_SPEED_MODIFIER = 0.1
 -- if average of all needs below this value, morale lowers gradually...
-CharacterConstants.MORALE_NEEDS_LOW = -20
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_NEEDS_LOW = -20
+CharacterConstants.MORALE_NEEDS_LOW = -30
 -- by this much per tick
-CharacterConstants.MORALE_NEEDS_DECREASE = -0.1
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_NEEDS_DECREASE = -0.1
+CharacterConstants.MORALE_NEEDS_DECREASE = -0.09
 -- same as above, but for high avg needs + morale
 CharacterConstants.MORALE_NEEDS_HIGH = 25
-CharacterConstants.MORALE_NEEDS_INCREASE = 0.1
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_NEEDS_INCREASE = 0.1
+CharacterConstants.MORALE_NEEDS_INCREASE = 0.11
 -- room morale score = score of all objects in room / size of room (in tiles)
 CharacterConstants.MAX_ROOM_MORALE_SCORE = 0.5
 -- room morale "diminishing returns range" - as morale goes from start to end, boost dwindles to zero
@@ -371,21 +378,29 @@ CharacterConstants.ANGER_UI_TEXT =
 -- if needs are met but morale is negative, bump by this each tick
 CharacterConstants.MORALE_NEEDS_MET_BONUS = 0.5
 CharacterConstants.MORALE_LOW_OXYGEN = -0.1
-CharacterConstants.MORALE_LOW_OXYGEN_THRESHOLD = 550
+CharacterConstants.MORALE_LOW_OXYGEN_THRESHOLD = 250
 --
 -- morale events
 --
 -- good things
-CharacterConstants.MORALE_NICE_CHAT = 0
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_NICE_CHAT = 0
+CharacterConstants.MORALE_NICE_CHAT = 0.2
 CharacterConstants.MORALE_MET_NEW_CITIZEN = 6
-CharacterConstants.MORALE_MINE_ASTEROID = 0
-CharacterConstants.MORALE_MAINTAIN_OBJECT = 0
-CharacterConstants.MORALE_MAINTAIN_PLANT = 0
-CharacterConstants.MORALE_REPAIR_OBJECT = 0
-CharacterConstants.MORALE_BUILD_BASE = 0
-CharacterConstants.MORALE_DID_HOBBY = 0
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_MINE_ASTEROID = 0
+CharacterConstants.MORALE_MINE_ASTEROID = 0.5
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_MAINTAIN_OBJECT = 0
+CharacterConstants.MORALE_MAINTAIN_OBJECT = 0.2
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_MAINTAIN_PLANT = 0
+CharacterConstants.MORALE_MAINTAIN_PLANT = 0.2
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_REPAIR_OBJECT = 0
+CharacterConstants.MORALE_REPAIR_OBJECT = 0.2
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_BUILD_BASE = 0
+CharacterConstants.MORALE_BUILD_BASE = 0.4
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_DID_HOBBY = 0
+CharacterConstants.MORALE_DID_HOBBY = 1
 CharacterConstants.MORALE_WOKE_UP_BED = 4
-CharacterConstants.MORALE_DELIVERED_FOOD = 0
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_DELIVERED_FOOD = 0
+CharacterConstants.MORALE_DELIVERED_FOOD = 0.2
 CharacterConstants.MORALE_SERVED_MEAL = 1
 CharacterConstants.MORALE_DRANK_BASE = 3
 CharacterConstants.MORALE_DRANK_MAX = 6
@@ -400,7 +415,8 @@ CharacterConstants.MORALE_BAD_CHAT = 0
 CharacterConstants.MORALE_SLEPT_ON_FLOOR = -1
 -- familiarity and affinity determine how bummed you feel when someone dies
 CharacterConstants.MORALE_CITIZEN_DIES_MIN = -4
-CharacterConstants.MORALE_CITIZEN_DIES_MAX = -60
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.MORALE_CITIZEN_DIES_MAX = -60
+CharacterConstants.MORALE_CITIZEN_DIES_MAX = -70
 -- morale loss for death plateaus beyond these familiarity + affinity levels
 CharacterConstants.MORALE_MAX_FAMILIARITY_DEATH = 100
 CharacterConstants.MORALE_MAX_AFFINITY_DEATH = 10
@@ -416,15 +432,18 @@ CharacterConstants.ANGER_BAD_CONVO_WITH_JERK = 5
 CharacterConstants.ANGER_NEARBY_BRAWL = 15
 CharacterConstants.ANGER_NEARBY_RAMPAGE = 25
 -- following 2 are unused; anger is % of max based on temper
-CharacterConstants.ANGER_EMBRIGGENED_UNJUST = 60
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.ANGER_EMBRIGGENED_UNJUST = 60
+CharacterConstants.ANGER_EMBRIGGENED_UNJUST = 40
 CharacterConstants.ANGER_EMBRIGGENED_JUST = 15
 CharacterConstants.ANGER_JOB_FAIL_TINY = 5
 CharacterConstants.ANGER_JOB_FAIL_MINOR = 15
 CharacterConstants.ANGER_JOB_FAIL_MAJOR = 25
 CharacterConstants.ANGER_BAD_FOOD = 10
-CharacterConstants.REPLICATOR_FOOD = 3
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.REPLICATOR_FOOD = 3
+CharacterConstants.REPLICATOR_FOOD = 2
 CharacterConstants.ANGER_MAX = 100
-CharacterConstants.ANGER_REDUCTION_PER_MORALE_TICK = 1
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.ANGER_REDUCTION_PER_MORALE_TICK = 1
+CharacterConstants.ANGER_REDUCTION_PER_MORALE_TICK = 1.1
 CharacterConstants.ANGER_REDUCTION_PER_MORALE_TICK_BRIG = 2
 
 CharacterConstants.STATUS_RAMPAGE = 1
@@ -459,13 +478,14 @@ CharacterConstants.BACKGROUND_RENDER_LAYER = 'WorldOutlines'
 
 CharacterConstants.SIGHT_RADIUS = 18
 
-CharacterConstants.OXYGEN_PER_SECOND = 200
+CharacterConstants.OXYGEN_PER_SECOND = 50
 CharacterConstants.OXYGEN_LOW = 400
-CharacterConstants.OXYGEN_SUFFOCATING = 100
+CharacterConstants.OXYGEN_SUFFOCATING = 50
 CharacterConstants.OXYGEN_SUFFOCATION_UNTIL_DEATH = 60 -- in game seconds
 CharacterConstants.OXYGEN_AVERAGE_SAMPLE = 5
 -- max oxygen = seconds of life inside suit * o2/sec
-CharacterConstants.SPACESUIT_MAX_OXYGEN = 480 * CharacterConstants.OXYGEN_PER_SECOND
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.SPACESUIT_MAX_OXYGEN = 480 * CharacterConstants.OXYGEN_PER_SECOND
+CharacterConstants.SPACESUIT_MAX_OXYGEN = 10 * 60 * CharacterConstants.OXYGEN_PER_SECOND
 CharacterConstants.SPACESUIT_OXYGEN_SUFFOCATING = CharacterConstants.OXYGEN_SUFFOCATION_UNTIL_DEATH * CharacterConstants.OXYGEN_PER_SECOND
 CharacterConstants.UNNECESSARY_SPACESUIT_REMOVE = 10
 
@@ -669,9 +689,11 @@ CharacterConstants.RIFLE = 3
 CharacterConstants.ROCK = 4
 CharacterConstants.BEER = 5
 
-CharacterConstants.SHIFT_COOLDOWN = 360
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.SHIFT_COOLDOWN = 360
+CharacterConstants.SHIFT_COOLDOWN = 310
 CharacterConstants.SHIFT_DURATION = 270
-CharacterConstants.SLEEP_DURATION = 270
+-- MDBALANCEMOD: Origonal Value was - CharacterConstants.SLEEP_DURATION = 270
+CharacterConstants.SLEEP_DURATION = 190
 
 CharacterConstants.VACUUM_VEC_SAMPLES = 5
 

@@ -175,12 +175,16 @@ function Character:init( tData )
 end
 
 function Character:postLoad()
+	Print(TT_Warning, 'Post Load ', self:getNiceName())
     if self.tStatus.tAssignedToBrig then
         local rRoom = ObjectList.getObject(self.tStatus.tAssignedToBrig)
         if rRoom and rRoom:getZoneName() == 'BRIG' then
             rRoom:getZoneObj():charAssigned(self)
         end
     end
+	if self:isDead() then
+		self:createBodyBag(true, true)
+	end
 end
 
 ------------------------------------------------------------------
@@ -330,6 +334,35 @@ function Character:isDead()
 	return self.tStatus.health == Character.STATUS_DEAD
 end
 
+
+function Character:createBodyBag(force, destroy)
+	if (not self:isDead() or self.tStatus.bCreatedCorpse) and not force then
+		return
+	end
+	
+	self.tStatus.bCreatedCorpse = true
+    local nCorpseType = nil
+	if Base.isFriendlyToPlayer(self) then
+		nCorpseType = Corpse.TYPE_FRIENDLY
+	elseif self.tStats.nRace == Character.RACE_MONSTER then
+		nCorpseType = Corpse.TYPE_MONSTER
+	else
+		nCorpseType = Corpse.TYPE_RAIDER
+	end
+    local tCorpse = Inventory.createItem('Corpse', { tOccupant=self._ObjectList_ObjectMarker, sOccupantID=self:getUniqueID(), 
+                        sOccupantName=self:getNiceName(), nType=nCorpseType })
+    self.rCorpse = require('Pickups.Pickup').dropInventoryItemAt(tCorpse, self:getLoc())
+    self.tStatus.tCorpseProp = ObjectList.getTag(self.rCorpse)
+	
+	if destroy then
+		CharacterManager.deleteCharacter(self)
+	end
+
+-- MDBALANCEMOD: Added this function to stop turrets from targeting incapacitated targets.
+function Character:isIncapacitated()
+	return Malady.isIncapacitated(self)
+end
+
 function Character:_remove()
 	assertdev(not self.bDestroyed)
     if self.bDestroyed then
@@ -443,19 +476,7 @@ function Character:_kill( callback, bStartDead, cause, tAdditionalInfo )
 	end
     -- spawn a pick-up-able corpse object, so doctors can inter our remains
     if cause ~= Character.CAUSE_OF_DEATH.SUCKED_INTO_SPACE and not self.tStatus.bCreatedCorpse then
-        self.tStatus.bCreatedCorpse = true
-        local nCorpseType = nil
-		if Base.isFriendlyToPlayer(self) then
-			nCorpseType = Corpse.TYPE_FRIENDLY
-		elseif self.tStats.nRace == Character.RACE_MONSTER or self.tStats.nRace == Character.RACE_KILLBOT then
-			nCorpseType = Corpse.TYPE_MONSTER
-		else
-			nCorpseType = Corpse.TYPE_RAIDER
-		end
-        local tCorpse = Inventory.createItem('Corpse', { tOccupant=self._ObjectList_ObjectMarker, sOccupantID=self:getUniqueID(), 
-                            sOccupantName=self:getNiceName(), nType=nCorpseType })
-        self.rCorpse = require('Pickups.Pickup').dropInventoryItemAt(tCorpse, self:getLoc())
-        self.tStatus.tCorpseProp = ObjectList.getTag(self.rCorpse)
+        self:createBodyBag()
     end
     local rCorpse = self.tStatus.tCorpseProp and ObjectList.getObject(self.tStatus.tCorpseProp)
     if rCorpse then rCorpse:hideBodybag() end
@@ -717,6 +738,10 @@ function Character:_shouldAttackLethal(rTarget)
 			if bTargetIsCharacter and rTarget.tStatus.bMarkedForExecution then
 				bLethal = true
 			end
+			-- MDBALANCEMOD: ignore all other states if the target is a parasite
+			if bTargetIsCharacter and rTarget.nRace == Character.RACE_MONSTER then
+				bLethal = true
+			end
             if bTargetIsCharacter and bLethal then
                 -- security only try to incapacitate brawlers
                 for otherTag,_ in pairs(rTarget.tStatus.tBrawlingWith) do
@@ -949,6 +974,18 @@ end
 
 function Character:setNeedValue(needName, value)
 	self.tNeeds[needName] = value
+end
+
+function Character:incrementNeedValue(needName, value)
+	if self.tNeeds[needName] == nil then
+		self.tNeeds[needName] = 0
+	end
+	self.tNeeds[needName] = self.tNeeds[needName] + value
+	if self.tNeeds[needName] > 90 then
+		self.tNeeds[needName] = 90
+	elseif self.tNeeds[needName] < -90 then
+		self.tNeeds[needName] = -90
+	end
 end
 
 function Character:storeMemory(key, val, nDuration)
@@ -1843,7 +1880,7 @@ end
 
 -- should self attack target
 function Character:shouldTargetForAttack(rTarget)
-    if rTarget == self or rTarget:isDead() or self.tStatus.bCuffed then return false end
+    if rTarget == self or rTarget:isDead() or self.tStatus.bCuffed or self.tStatus.inPrison() then return false end
     
     local nFactionBehavior = self:getFactionBehavior()
     if nFactionBehavior == Character.FACTION_BEHAVIOR.Citizen or nFactionBehavior == Character.FACTION_BEHAVIOR.Friendly then
@@ -2282,6 +2319,13 @@ function Character:updateAI(dt)
 				-- don't modify needs that are going to be modified by this activity
 			else
                 local nMod = tNeedsReduceMods[k] or 1
+				if self.tNeeds[k] <= 50 then
+					-- Cap all non duty reductions at 0.3
+					-- People need to stop F'n around and WORK IT!
+					if k ~= 'Duty' and nMod > 0.3 then
+						nMod = 0.3
+					end
+				end
 				self.tNeeds[k] = Needs.clamp(self.tNeeds[k] - 1*nMod)
 			end
 		end

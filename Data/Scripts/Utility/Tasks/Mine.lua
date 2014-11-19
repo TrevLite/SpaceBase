@@ -14,8 +14,10 @@ local CharacterConstants=require('CharacterConstants')
 local Mine = Class.create(Task)
 
 --Mine.emoticon = 'work'
-Mine.MINING_MIN_DURATION = 2
-Mine.MINING_MAX_DURATION = 4
+-- MDBALANCEMOD: Origonal Value was - Mine.MINING_MIN_DURATION = 2
+Mine.MINING_MIN_DURATION = 20
+-- MDBALANCEMOD: Origonal Value was - Mine.MINING_MAX_DURATION = 4
+Mine.MINING_MAX_DURATION = 60*2
 Mine.HELMET_REQUIRED = true
 
 function Mine:init(rChar,tPromisedNeeds,rActivityOption)

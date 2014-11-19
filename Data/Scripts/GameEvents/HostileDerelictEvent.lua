@@ -17,15 +17,15 @@ function HostileDerelictEvent.getSpawnLocationModifier()
 end
 
 function HostileDerelictEvent.getWeight(nPop,nElapsed,bForecast)
-    if bForecast then return 10.0 end
+    if bForecast then return 2.5 end
     
     local _,nPlayerRooms,nHiddenRooms = Room.getRoomsOfTeam(Character.TEAM_ID_PLAYER)
     local bAllowDerelict = nHiddenRooms < DerelictEvent.nMaxUndiscoveredRooms
     if bAllowDerelict then
-        return 10.0
+        return 2.5
     end
     if nHiddenRooms > DerelictEvent.nMaxUndiscoveredRooms * .5 then
-        return 6.0
+        return 1.5
     end
     return 0
 end

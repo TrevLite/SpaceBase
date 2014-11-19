@@ -21,11 +21,11 @@ function HostileImmigrationEvent.getSpawnLocationModifier()
 end
 
 function HostileImmigrationEvent.allowEvent(nPopulation, nElapsedTime)
-    return nPopulation > 6 or GameRules.elapsedTime > 60*12
+    return nPopulation > 10 and GameRules.elapsedTime > 60*15
 end
 
 function HostileImmigrationEvent.getWeight()
-    return 15.0
+    return 10.0
 end
 
 function HostileImmigrationEvent.onQueue(rController, tUpcomingEventPersistentState, nPopulation, nElapsedTime)

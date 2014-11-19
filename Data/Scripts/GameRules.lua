@@ -103,15 +103,21 @@ local GameRules = {
     MAT_BUILD_HEAVY_DOOR = 20,
     MAT_VAPE_FLOOR = 4,
 	-- matter yield based on miner skill
-    MAT_MINE_ROCK_MIN = 30,
-    MAT_MINE_ROCK_MAX = 50,
-    MAT_MINE_ROCK_MIN_LVL2 = 40,
-    MAT_MINE_ROCK_MAX_LVL2 = 60,
+    -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MIN = 30,
+    MAT_MINE_ROCK_MIN = 150,
+    -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MAX = 50,
+    MAT_MINE_ROCK_MAX = 210,
+    -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MIN_LVL2 = 40,
+    MAT_MINE_ROCK_MIN_LVL2 = 200,
+    -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MAX_LVL2 = 60,
+    MAT_MINE_ROCK_MAX_LVL2 = 260,
 	-- % of an object's original cost you get from vaporizing it
     MAT_VAPE_OBJECT_PCT = 0.75,
     -- matter gained from remains
-    MAT_CORPSE_MIN = 130,
-    MAT_CORPSE_MAX = 170,
+    -- MDBALANCEMOD: Origonal Value was -MAT_CORPSE_MIN = 130,
+    MAT_CORPSE_MIN = 150,
+    -- MDBALANCEMOD: Origonal Value was - MAT_CORPSE_MAX = 170,
+    MAT_CORPSE_MAX = 300,
     
     -- life support system
     -- (# of recyclers needed to support 1 citizen)

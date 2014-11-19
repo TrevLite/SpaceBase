@@ -26,16 +26,16 @@ function HostileDockingEvent.onQueue(rController, tUpcomingEventPersistentState,
 end
 
 function HostileDockingEvent.getWeight()
-    return 5.0
+    return 1.0
 end
 
 function HostileDockingEvent._ignoreRefusal(tPersistentEventState)
-    return math.random() > 0.33
+    return math.random() > 0.66
 end
 
 function HostileDockingEvent._getDialogSet()
     local sKey = 'ambiguous'
-    if math.random() > .3 then
+    if math.random() > .6 then
         sKey = 'hostile'
     end
     return DFUtil.arrayRandom(DialogSets['dockingEvents'][sKey])
