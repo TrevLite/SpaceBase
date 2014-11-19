@@ -175,16 +175,12 @@ function Character:init( tData )
 end
 
 function Character:postLoad()
-	Print(TT_Warning, 'Post Load ', self:getNiceName())
     if self.tStatus.tAssignedToBrig then
         local rRoom = ObjectList.getObject(self.tStatus.tAssignedToBrig)
         if rRoom and rRoom:getZoneName() == 'BRIG' then
             rRoom:getZoneObj():charAssigned(self)
         end
     end
-	if self:isDead() then
-		self:createBodyBag(true, true)
-	end
 end
 
 ------------------------------------------------------------------
@@ -335,29 +331,6 @@ function Character:isDead()
 end
 
 
-function Character:createBodyBag(force, destroy)
-	if (not self:isDead() or self.tStatus.bCreatedCorpse) and not force then
-		return
-	end
-	
-	self.tStatus.bCreatedCorpse = true
-    local nCorpseType = nil
-	if Base.isFriendlyToPlayer(self) then
-		nCorpseType = Corpse.TYPE_FRIENDLY
-	elseif self.tStats.nRace == Character.RACE_MONSTER then
-		nCorpseType = Corpse.TYPE_MONSTER
-	else
-		nCorpseType = Corpse.TYPE_RAIDER
-	end
-    local tCorpse = Inventory.createItem('Corpse', { tOccupant=self._ObjectList_ObjectMarker, sOccupantID=self:getUniqueID(), 
-                        sOccupantName=self:getNiceName(), nType=nCorpseType })
-    self.rCorpse = require('Pickups.Pickup').dropInventoryItemAt(tCorpse, self:getLoc())
-    self.tStatus.tCorpseProp = ObjectList.getTag(self.rCorpse)
-	
-	if destroy then
-		CharacterManager.deleteCharacter(self)
-	end
-
 -- MDBALANCEMOD: Added this function to stop turrets from targeting incapacitated targets.
 function Character:isIncapacitated()
 	return Malady.isIncapacitated(self)
@@ -476,7 +449,19 @@ function Character:_kill( callback, bStartDead, cause, tAdditionalInfo )
 	end
     -- spawn a pick-up-able corpse object, so doctors can inter our remains
     if cause ~= Character.CAUSE_OF_DEATH.SUCKED_INTO_SPACE and not self.tStatus.bCreatedCorpse then
-        self:createBodyBag()
+        self.tStatus.bCreatedCorpse = true
+        local nCorpseType = nil
+		if Base.isFriendlyToPlayer(self) then
+			nCorpseType = Corpse.TYPE_FRIENDLY
+		elseif self.tStats.nRace == Character.RACE_MONSTER or self.tStats.nRace == Character.RACE_KILLBOT then
+			nCorpseType = Corpse.TYPE_MONSTER
+		else
+			nCorpseType = Corpse.TYPE_RAIDER
+		end
+        local tCorpse = Inventory.createItem('Corpse', { tOccupant=self._ObjectList_ObjectMarker, sOccupantID=self:getUniqueID(), 
+                            sOccupantName=self:getNiceName(), nType=nCorpseType })
+        self.rCorpse = require('Pickups.Pickup').dropInventoryItemAt(tCorpse, self:getLoc())
+        self.tStatus.tCorpseProp = ObjectList.getTag(self.rCorpse)
     end
     local rCorpse = self.tStatus.tCorpseProp and ObjectList.getObject(self.tStatus.tCorpseProp)
     if rCorpse then rCorpse:hideBodybag() end
