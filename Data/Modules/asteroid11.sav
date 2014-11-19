@@ -1,0 +1,123 @@
+--MOAI
+serializer = ... or MOAIDeserializer.new ()
+
+local function init ( objects )
+
+	--Initializing Tables
+	local table
+
+	table = objects [ 0x05E77D98 ]
+	table [ "__newindex" ] = objects [ 0x05E77D98 ]
+	table [ "__index" ] = objects [ 0x05E77D98 ]
+
+	table = objects [ 0x05E78748 ]
+	table [ "__newindex" ] = objects [ 0x05E78748 ]
+	table [ "__index" ] = objects [ 0x05E78748 ]
+
+	table = objects [ 0x0E074050 ]
+	table [ "tWorldSaveData" ] = objects [ 0x0E0740A0 ]
+	table [ "nSavegameVersion" ] = 1
+
+	table = objects [ 0x0E0740A0 ]
+	table [ "origMinY" ] = 136
+	table [ "dockingPoints" ] = objects [ 0x0E0742A8 ]
+	table [ "Character" ] = objects [ 0x0E074140 ]
+	table [ "Reservation" ] = objects [ 0x0E074208 ]
+	table [ "worldMinY" ] = 256
+	table [ "worldMaxY" ] = 384
+	table [ "maxX" ] = 83
+	table [ "Room" ] = objects [ 0x0E074190 ]
+	table [ "EnvObject" ] = objects [ 0x0E0740C8 ]
+	table [ "oxygenGrid" ] = objects [ 0x05E78738 ]
+	table [ "minX" ] = 81
+	table [ "worldMaxX" ] = -5760
+	table [ "minY" ] = 136
+	table [ "origMinX" ] = 81
+	table [ "worldMinX" ] = -6016
+	table [ "pathGrid" ] = objects [ 0x05E77D88 ]
+	table [ "maxY" ] = 140
+	table [ "Oxygen" ] = objects [ 0x0E074280 ]
+
+	table = objects [ 0x0E0740C8 ]
+
+	table = objects [ 0x0E074140 ]
+
+	table = objects [ 0x0E074190 ]
+
+	table = objects [ 0x0E074208 ]
+
+	table = objects [ 0x0E074280 ]
+
+	table = objects [ 0x0E0742A8 ]
+
+	--DFOxygenGrid
+	serializer:initObject (
+		objects [ 0x05E78738 ],
+		objects [ 0x05E78748 ],
+		{
+			[ "mData" ] = "7dXBDQAACAIxXu4/sl/jCrQJK3AJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADPnAG9HwDoP6D/gP4DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQLUF",
+			[ "mOxygenValues" ] = "7cExAQAAAMKg9U/tbQegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeAA==",
+			[ "mShape" ] = 2147483649,
+			[ "mCellHeight" ] = 32,
+			[ "mNextUpdate" ] = 0.00029077380895615,
+			[ "mWidth" ] = 256,
+			[ "mCellWidth" ] = 128,
+			[ "mNextRow" ] = 2,
+			[ "mYOff" ] = 0,
+			[ "mGeneratorList" ] = {},
+			[ "mTileWidth" ] = 128,
+			[ "mTileHeight" ] = 64,
+			[ "mRepeat" ] = 0,
+			[ "mHeight" ] = 256,
+			[ "mXOff" ] = 0,
+			[ "mColors" ] = "7cExAQAAAMKg/qnnbQegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeAA==",
+		}
+	)
+
+	--MOAIGrid
+	serializer:initObject (
+		objects [ 0x05E77D88 ],
+		objects [ 0x05E77D98 ],
+		{
+			[ "mCellHeight" ] = 32,
+			[ "mWidth" ] = 256,
+			[ "mCellWidth" ] = 128,
+			[ "mShape" ] = 2147483649,
+			[ "mYOff" ] = 0,
+			[ "mData" ] = "7dWxEQAwCAMxc5fBGZ2KLIEKLeDCX0kKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAvL73sAXc/wBag/4D+A/oPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANcN",
+			[ "mTileWidth" ] = 128,
+			[ "mTileHeight" ] = 64,
+			[ "mRepeat" ] = 0,
+			[ "mHeight" ] = 256,
+			[ "mXOff" ] = 0,
+			[ "mColors" ] = "7cExAQAAAMKg/qnnbQegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeAA==",
+		}
+	)
+
+end
+
+--Declaring Objects
+local objects = {
+
+	--Declaring Tables
+	[ 0x05E77D98 ] = {},
+	[ 0x05E78748 ] = {},
+	[ 0x0E074050 ] = {},
+	[ 0x0E0740A0 ] = {},
+	[ 0x0E0740C8 ] = {},
+	[ 0x0E074140 ] = {},
+	[ 0x0E074190 ] = {},
+	[ 0x0E074208 ] = {},
+	[ 0x0E074280 ] = {},
+	[ 0x0E0742A8 ] = {},
+
+	--Declaring Instances
+	[ 0x05E77D88 ] = serializer:registerObjectID ( MOAIGrid.new (), 0x05E77D88 ),
+	[ 0x05E78738 ] = serializer:registerObjectID ( DFOxygenGrid.new (), 0x05E78738 ),
+
+}
+
+init ( objects )
+
+--Returning Tables
+return objects [ 0x0E074050 ]
