@@ -104,24 +104,21 @@ local GameRules = {
     MAT_VAPE_FLOOR = 4,
 	-- matter yield based on miner skill
     -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MIN = 30,
-    MAT_MINE_ROCK_MIN = 150,
+    MAT_MINE_ROCK_MIN = 90,
     -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MAX = 50,
-    MAT_MINE_ROCK_MAX = 210,
+    MAT_MINE_ROCK_MAX = 150,
     -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MIN_LVL2 = 40,
-    MAT_MINE_ROCK_MIN_LVL2 = 200,
+    MAT_MINE_ROCK_MIN_LVL2 = 120,
     -- MDBALANCEMOD: Origonal Value was - MAT_MINE_ROCK_MAX_LVL2 = 60,
-    MAT_MINE_ROCK_MAX_LVL2 = 260,
+    MAT_MINE_ROCK_MAX_LVL2 = 180,
 	-- % of an object's original cost you get from vaporizing it
     MAT_VAPE_OBJECT_PCT = 0.75,
     -- matter gained from remains
     -- MDBALANCEMOD: Origonal Value was -MAT_CORPSE_MIN = 130,
     MAT_CORPSE_MIN = 150,
     -- MDBALANCEMOD: Origonal Value was - MAT_CORPSE_MAX = 170,
-    MAT_CORPSE_MAX = 300,
-    
-    -- life support system
-    -- (# of recyclers needed to support 1 citizen)
-    RECYCLERS_PER_CITIZEN = 5,
+    MAT_CORPSE_MAX = 200,
+
 	
 	-- hint system state
 	bHasHadEnclosedRooms = false,
@@ -1470,12 +1467,17 @@ function GameRules.panCamera(dx, dy)
 end
 
 function GameRules.getCapacity()
-	-- 2nd arg of getNumberOfObjects = "only count working objects"
 	local nCapacity = 0
-	local EnvObject = require('EnvObjects.EnvObject')
-	nCapacity = nCapacity + EnvObject.getNumberOfObjects('OxygenRecycler', true) * GameRules.RECYCLERS_PER_CITIZEN
-	nCapacity = nCapacity + EnvObject.getNumberOfObjects('OxygenRecyclerLevel2', true) * GameRules.RECYCLERS_PER_CITIZEN * 2
-	return nCapacity
+	--local EnvObject = require('EnvObjects.EnvObject')
+	local ObjectData = require('EnvObjects.EnvObjectData')
+	local Character = require('CharacterConstants')
+
+	for name,data in pairs(ObjectData.tObjects) do
+		if data.oxygenLevel then
+			nCapacity = nCapacity + EnvObject.getNumberOfOxygenObjects(name) * data.oxygenLevel * 10 / Character.OXYGEN_PER_SECOND
+		end
+	end
+	return math.floor(nCapacity)
 end
 
 function GameRules.deleteCharacter(wx,wy)

@@ -38,8 +38,7 @@ CharacterConstants.PERSONALITY_TRAITS=
     -- 1 = gregarious, 0 = shy
     nGregariousness=2,
     -- 1 = chatty, 0 = quiet
-    -- MDBALANCEMOD: Origonal Value was - nChattiness=3,
-	nChattiness=2,
+	nChattiness=3,
     -- 1 = neat, 0 = slob
     nNeatness=4,
     -- uses emoticons
@@ -478,9 +477,9 @@ CharacterConstants.BACKGROUND_RENDER_LAYER = 'WorldOutlines'
 
 CharacterConstants.SIGHT_RADIUS = 18
 
-CharacterConstants.OXYGEN_PER_SECOND = 50
+CharacterConstants.OXYGEN_PER_SECOND = 200
 CharacterConstants.OXYGEN_LOW = 400
-CharacterConstants.OXYGEN_SUFFOCATING = 50
+CharacterConstants.OXYGEN_SUFFOCATING = 100
 CharacterConstants.OXYGEN_SUFFOCATION_UNTIL_DEATH = 60 -- in game seconds
 CharacterConstants.OXYGEN_AVERAGE_SAMPLE = 5
 -- max oxygen = seconds of life inside suit * o2/sec

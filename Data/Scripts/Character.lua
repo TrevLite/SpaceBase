@@ -961,18 +961,6 @@ function Character:setNeedValue(needName, value)
 	self.tNeeds[needName] = value
 end
 
-function Character:incrementNeedValue(needName, value)
-	if self.tNeeds[needName] == nil then
-		self.tNeeds[needName] = 0
-	end
-	self.tNeeds[needName] = self.tNeeds[needName] + value
-	if self.tNeeds[needName] > 90 then
-		self.tNeeds[needName] = 90
-	elseif self.tNeeds[needName] < -90 then
-		self.tNeeds[needName] = -90
-	end
-end
-
 function Character:storeMemory(key, val, nDuration)
 	nDuration = nDuration or 15
 	self.tMemory[key] = {val=val, nTime=GameRules.simTime, nDuration=nDuration}
@@ -1865,7 +1853,7 @@ end
 
 -- should self attack target
 function Character:shouldTargetForAttack(rTarget)
-    if rTarget == self or rTarget:isDead() or self.tStatus.bCuffed or self.tStatus.inPrison() then return false end
+    if rTarget == self or rTarget:isDead() or self.tStatus.bCuffed or self:inPrison() then return false end
     
     local nFactionBehavior = self:getFactionBehavior()
     if nFactionBehavior == Character.FACTION_BEHAVIOR.Citizen or nFactionBehavior == Character.FACTION_BEHAVIOR.Friendly then

@@ -353,6 +353,16 @@ function EnvObject.getNumberOfObjects(sType, bOnlyWorking, bIncludeNonOwned)
     return n
 end
 
+function EnvObject.getNumberOfOxygenObjects(sType)
+	local tObjects,n = EnvObject.getObjectsOfType(sType,true)
+	for _,obj in pairs(tObjects) do
+		if not obj:_shouldGenerateOxygen() then
+			n = n - 1
+		end
+	end
+	return n
+end
+
 function EnvObject.destroyBuildGhost(prop)
     Renderer.getRenderLayer(require('Character').RENDER_LAYER):removeProp(prop)
 end
