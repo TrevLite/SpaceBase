@@ -1,5 +1,0 @@
-return {
-
-	sShader = "Shaders/invert.shd",
-	
-}   

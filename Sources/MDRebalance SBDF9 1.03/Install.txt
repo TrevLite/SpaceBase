@@ -1,0 +1,4 @@
+1. Put this .rar in your spacebaceDF9 installation folder, in steam that's usually in \SteamApps\common\SpacebaseDF9
+2. Back up your SpacebaceDF9 folder if you're bothered about re-instating it at a later date
+3. UnRar using WinRar or similar, selecting overwrite 'Yes to All'
+4. Enjoy my idea of a slightly better balance for SpacebaseDF9
