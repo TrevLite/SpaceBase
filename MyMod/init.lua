@@ -37,6 +37,7 @@ local GameRules = require('GameRules')
 -------------------------------------------------------------------------------
 local Character = require('Character')
 local Malady = require('Malady')
+local ObjectList=require('ObjectList')
 
 Character.isIncapacitated = function (self)
 	return Malady.isIncapacitated(self)
@@ -155,6 +156,7 @@ end
 -- Turret.lua changes
 -------------------------------------------------------------------------------
 local Turret = require('EnvObjects.Turret')
+local Base = require('Base')
 
 Turret.isHostileTo = function (self, rChar)
     if rChar:isDead() then return false end
